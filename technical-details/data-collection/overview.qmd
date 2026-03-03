@@ -1,0 +1,82 @@
+# Introduction 
+
+Collect enough and meaningful data for following steps
+
+## Goals
+
+Collect the match data of Messi and his major honors (such as the Ballon d'Or, league championships, Champions League titles, etc.) and his player profile.
+
+## Motivation
+
+This project uses public and legal data about Lionel Messi’s matches. The data include goals, assists, appearances, match events, and major honors, all from reliable sources. The dataset is detailed enough to support analysis of performance trends, contributions, and statistical modeling.
+
+
+## Data Source Information
+
+The data used in this project is collected from [Wikipedia](https://en.wikipedia.org/wiki/Lionel_Messi) and [FootyStats](https://footystats.org/players/argentina/lionel-messi).
+
+## Data Structure and Format
+
+This project includes five CSV files and one JSON file:
+
+- **messi_detailed.csv**  
+  Contains detailed match information such as yellow cards, playing time, and goal involvement efficiency, sourced from FootyStats.
+
+- **messi_club_career.csv**  
+  Retrieved via API from Wikipedia, providing brief data on Messi's club career.
+
+- **messi_international_career.csv**  
+  Retrieved via API from Wikipedia, providing brief data on Messi's national team career.
+
+- **honor.csv**  
+  Manually compiled, recording Messi's team and individual honors.
+
+- **position.csv**  
+  Manually compiled, recording appearances, goals, and assists by position.
+
+- **Lionel_Messi_Player_Profile.json**  
+  Retrieved via API from Wikipedia, containing data on Messi's playing style.
+
+
+## Definition of Modeling Targets
+
+I define several supervised learning targets to analyze and predict different aspects of Messi’s seasonal performance and ranking outcomes.
+
+### 1. Regression Targets
+- Seasonal goals scored  
+- Seasonal assists provided  
+
+### 2. Multi-output Regression Targets
+- Player rankings in a season:  
+  - League ranking among top attackers  
+  - League ranking among top midfielders  
+  - League ranking among top defenders  
+  - Club ranking as top scorer  
+- Attack level score: Level 1 (low) to Level 5 (high)  
+
+### 3. Binary Classification Targets
+- **Yellow card occurrence**: 0 = No yellow card, 1 = At least one yellow card  
+- **Penalty occurrence**: 0 = No penalty, 1 = At least one penalty 
+
+### 4. Multiclass Classification Target
+- Player attacking level classification (Low, Medium, High)
+
+
+## Overview of Methods
+
+- I used web scraping to collect Messi’s data from Wikipedia
+
+- I also extracted the “Player profile” section to study Messi’s playing style and technical characteristics. 
+ 
+- For Messi’s honors, because scraping was difficult, I manually compiled the data into a CSV file with the professor’s permission.
+
+
+## Tools and Technologies
+
+- **Python**: Main analytical language  
+- **Pandas**: Data cleaning and processing  
+- **Scikit-learn**: Clustering and regression models  
+- **Matplotlib / Seaborn**: Visualization of analysis results
+
+
+

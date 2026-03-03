@@ -1,0 +1,24 @@
+# Introduction and Motivation
+
+In this section, I will use unsupervised learning to analyze Messi’s match performances, including goals, assists, playing time, and goal participation efficiency, and to understand the relationships between these metrics. First, I will apply dimensionality reduction methods such as PCA, a linear technique that captures the main directions of variation and overall performance trends, and t-SNE, which can reveal local clusters and non-linear patterns to highlight similar matches and standout performances. After projecting the data into a low-dimensional space, I will use three clustering algorithms—K-Means, DBSCAN, and Hierarchical Clustering—to group the matches and identify patterns in performance.
+
+# Overview of Methods
+
+- **PCA (Principal Component Analysis)**:  
+  PCA is a linear dimensionality reduction method. It combines the original features in a linear way to find the directions with the most variance. Each principal component is a weighted sum of the original features. This method allows high-dimensional data to be shown in a lower dimension while keeping most of the important information. 
+
+- **t-SNE (t-Distributed Stochastic Neighbor Embedding)**:  
+  t-SNE is a nonlinear dimensionality reduction method that maps high-dimensional data into two dimensions for visualization. It focuses on preserving local relationships between data points, making it easier to detect clusters of similar matches and highlight outliers or particularly distinctive performances.
+
+- **K-Means Clustering**:  
+  K-Means clustering is an unsupervised learning method used to divide data into K clusters. It starts by choosing initial cluster centers (centroids), then assigns each data point to the nearest centroid. The centroids are updated as the average of points in each cluster, and this process repeats until the clusters no longer change. The goal is to make data points within the same cluster as similar as possible and data points in different clusters as different as possible.
+
+- **DBSCAN (Density-Based Spatial Clustering of Applications with Noise)**:  
+  DBSCAN is a density-based clustering method. It groups points that are close together and can find clusters of any shape. It does not need the number of clusters beforehand and can also identify noise or outlier points. Noise points are labeled as -1.
+
+- **Hierarchical clustering**:  
+  Hierarchical clustering is a method that groups data in a tree-like structure. It works by either starting with each point as its own cluster and gradually merging similar clusters, or by starting with all data in one cluster and gradually splitting it into smaller clusters. This creates a hierarchy of clusters, and you can choose different levels to see how the data is grouped.
+
+# Summary
+
+In terms of dimensionality reduction, PCA is good at capturing global trends, with efficient calculation and easy interpretation. While t-SNE is more suitable for revealing local structures and nonlinear patterns. In terms of clustering, 2-class K-Means is best for global grouping, hierarchical clustering can detect local differences, and DBSCAN is good at identifying outliers and irregular clusters.

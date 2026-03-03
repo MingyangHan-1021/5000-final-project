@@ -1,0 +1,11 @@
+# Summary
+
+## Challenges
+
+I met some challenges. During the crawling, i found that some pages (such as the section about Messi's honors) had complex structures and difficult to capture. Professor James suggested that i can use the large language models to  extract data. However, there were still some data that could not be capture. After getting the professor's permission, I manually organized the textual data and compiled it into CSV files.
+
+## Future Work
+
+The next steps I will focus on data cleaning for following analysis
+
+

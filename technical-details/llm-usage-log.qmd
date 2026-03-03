@@ -1,0 +1,20 @@
+---
+title: "LLM usage log"
+bibliography: ../assets/references.bib
+---
+
+LLM tools were used in the following way for the tasks below
+
+## Brainstorming
+
+* After selecting our research topic, we used ChatGPT to help refine our research questions and narrow the focus for our related work, ensuring that our investigation was both clear and well-scoped. [@gpt4o_resrch_quest]
+
+## Writing: 
+
+* Proofreading and improving grammar in the literature reviews. [@gpt4o_grammar]
+* Conducted systematic proofreading of our literature reviews, correcting grammar and spelling errors while optimizing sentence structure and paragraph logic to enhance overall flow and clarity of ideas. This process ensured that the reviews were more academically rigorous and easier for readers to understand. [@gpt4o_improve]
+* Used to help summarize code in prose, specifically to make explanations non-techy  [@gpt4o_prose_explain]
+
+## Code: 
+
+* Used ChatGPT to assist in modifying and debugging code throughout the project. It helped us identify errors, improve code structure, and streamline implementation for tasks including data analysis, visualization, and modeling. [@gpt4o_code_fix] [@gpt4o_data_analysis] [@gpt4o_visualization] [@gpt4o_modeling]

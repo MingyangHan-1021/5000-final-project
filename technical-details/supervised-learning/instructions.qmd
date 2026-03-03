@@ -1,0 +1,131 @@
+# Introduction and Motivation
+
+Supervised learning is the core of this project's analysis. I will use various regression and classification models to uncover the relationships within the data. I will predict the consecutive performance indicators of players (such as the number of goals and assists), ranking indicators (such as the best player rankings for each position), and classification indicators (such as the number of yellow cards and penalty kicks).
+
+## Data Preprocessing
+
+### 1. **Binary Conversion**
+   - The target has_penalty was converted to 0/1 (1 = player had a penalty, 0 = no penalty).
+   - Yellow and red cards were converted to binary features: 1 = player received at least one card, 0 = none.
+
+### 2. **Column Removal**
+   - Irrelevant columns such as full_name and end were removed to avoid unnecessary noise in modeling.
+
+### 3. **Encoding Categorical Variables**
+   - Categorical features (league, Current Club, season) were one-hot encoded to create a binary representation for modeling.
+### 4. **Standardization of Numerical Features**
+   - Key numerical features were standardized using z-score normalization.
+
+### 5. **Dimensionality Reduction**
+   - Principal Component Analysis (PCA) was applied to reduce the feature space to 5 components, capturing the main variance while keeping the dataset compact.
+  
+
+## Training & Testing Strategy
+
+### 1. **Data Splitting**
+   - The dataset was split into 80% for training and 20% for testing using train_test_split from sklearn, allowing the model to be evaluated on unseen data
+   - X_train shape: (72, 5), y_train shape: (72, 2)
+
+### 2. **Prepared Dataset**
+   - The resulting training and test sets are scaled, encoded, and PCA-transformed, ready for supervised learning models to predict goals_overall and assists_overall.
+
+# Overview of Methods
+
+## Modeling Approaches Overview
+
+### 1. Linear Regression
+- Single or multi-output regression model for predicting continuous player performance metrics, such as goals (`goals_overall`) and assists (`assists_overall`).
+- Captures linear relationships between player features (e.g., minutes played, league, club) and target variables.
+
+### 2. Regression Tree
+- Decision tree used for regression tasks.
+- Splits player data based on feature thresholds to predict continuous performance metrics like goals and assists.
+
+### 3. Multi-output Decision Tree Regressor
+- Extension of regression trees to simultaneously predict multiple continuous targets, such as league rankings for top attackers, midfielders, defenders, and club top scorer.
+- Each target has its own tree, but training is performed jointly to capture shared feature influence across targets.
+
+### 4. Multi-output Random Forest Regressor
+- Ensemble of multiple regression trees for multi-output regression.
+- Reduces overfitting and improves predictive accuracy, suitable for predicting multiple ranking indicators (attackers, midfielders, defenders, top scorer).
+
+### 5. Multi-output Decision Tree Classifier
+- Decision tree adapted for multi-target classification tasks.
+- Used to predict categorical indicators like yellow cards (`yellow_cards_overall`) and penalties (`has_penalty`).
+- Can predict multiple classification outcomes simultaneously.
+
+### 6. Multi-class Decision Tree Classification
+- Decision tree classifier for single or multi-class categorical targets.
+- Applied to player efficiency metrics (e.g., goal/assist contribution per 90 minutes `goal_assist_efficiency`) to classify players into Low, Medium, or High efficiency (`goal_assist_class`).
+- Provides an intuitive evaluation of player goal and assist efficiency levels.
+
+## Result
+
+### 1. Linear Regression
+
+- Goals: RMSE = 0.196 and R² = 0.952,
+- Assists: RMSE = 0.410 and R² = 0.842
+- The multiple output linear regression, when applied to the features after PCA dimensionality reduction, accurately predicts Messi's goals and assists, with small errors and a good fitting effect.
+
+### 2. Regression Tree
+- Training MSE: 0.11264930790498072
+- Testing MSE: 0.14955551892922894
+- The decision tree has relatively low error on the training set, but the error increases on the test set. This indicates a certain degree of overfitting. Nevertheless, the model is still able to capture the general trend of predicting the number of goals and assists.
+
+
+### 3. Multi-output Decision Tree Regressor
+- Best max_depth: 2
+- rank_in_league_top_attackers: RMSE: 1.053
+- rank_in_league_top_midfielders: RMSE: 1.145
+- rank_in_league_top_defenders: RMSE: 0.000
+- rank_in_club_top_scorer: RMSE: 1.045
+- The multi-output regression tree demonstrated reasonable error levels on all three objectives.
+
+### 4. Multi-output Random Forest Regressor
+- Best parameters: {'estimator__max_depth': 8, 'estimator__min_samples_leaf': 3, 'estimator__n_estimators': 100}
+- rank_in_league_top_attackers: RMSE = 1.075
+- rank_in_league_top_midfielders: RMSE = 0.797
+- rank_in_league_top_defenders: RMSE = 0.000
+- rank_in_club_top_scorer: RMSE = 0.943
+- The best multi-output random forest model performs exceptionally well in predicting these four ranking indicators.
+
+### 5. Multi-output Decision Tree Classifier
+- yellow_cards_overall: Accuracy: 1.000, Precision: 1.000, Recall: 1.000
+- has_penalty: Accuracy: 0.778, Precision: 1.000, Recall: 0.500
+
+
+### 6. Multi-class Decision Tree Classification
+| Class | Precision | Recall | F1-score | Support |
+|-------|-----------|--------|----------|---------|
+| 0     | 0.80      | 0.67   | 0.73     | 6       |
+| 1     | 0.80      | 0.67   | 0.73     | 6       |
+| 2     | 0.50      | 0.67   | 0.57     | 6       |
+| **Accuracy** | -     | -      | 0.67     | 18      |
+| **Macro avg**| 0.70  | 0.67   | 0.68     | 18      |
+| **Weighted avg** | 0.70 | 0.67 | 0.68     | 18      |
+
+- The overall accuracy of the test set is 0.67. The accuracy and recall rates of the low and medium categories are relatively stable, while the performance of the high category is slightly weaker. This indicates that the model's ability to distinguish efficient samples is relatively limited.
+
+
+## Discussion
+
+### 1. **Result Interpretation**
+
+Linear regression performs well in predicting goals, indicating a linear relationship between goals and player characteristics. However, it performs poorly in predicting assists, suggesting that assists are influenced by more non-linear factors. Regression trees can capture non-linear relationships, but the test error increases, indicating overfitting. Multi-output regression trees and random forests are more stable in ranking predictions and can simultaneously consider the shared characteristics of multiple targets. 
+
+In the classification part, the multi-output decision tree performed perfectly in predicting yellow cards but had a common performance in predicting penalties. The overall accuracy rate in predicting goals/assists was 0.67. The predictions for low-efficiency and medium-efficiency samples were stable, but the predictions for high-efficiency samples were bad.
+
+### 2. **Model Performance Comparison**
+
+- **Regression tasks**: The multi-output random forest achieved lower errors than single regression trees and linear regression, demonstrating the advantage of ensemble methods in reducing overfitting and improving generalization. Regression trees are flexible but prone to overfitting, while linear regression has limited ability to capture nonlinear relationships.  
+
+- **Classification tasks**: The multi-output decision tree performed well for common categories but showed weaker performance on rare events (penalties and high-efficiency samples). Multi-class decision trees predicted low and medium efficiency samples reliably, whereas high-efficiency samples were less accurately classified.
+
+
+### 3. **Limitations and Future Work**
+
+The current work has several limitations, for example limited samples for rare events (such as no-penalty season and high-efficiency performances).
+
+Besides, feature interdependencies, multicollinearity, or missing information may affect model performance. Future research could focus on expanding the dataset, particularly for rare and extreme performance samples, exploring more advanced machine learning methods such as gradient boosting trees, neural networks, or multi-task deep learning, and applying data augmentation, weighted loss functions, or synthetic sample generation to improve prediction accuracy for rare events.
+
+

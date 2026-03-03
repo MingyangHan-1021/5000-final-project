@@ -1,0 +1,73 @@
+---
+title: "Progress log"
+---
+
+Track progress and keep a log of member contributions to the project
+
+## Mingyang Han:
+
+[Mingyang Han](../index.qmd#About Me)
+
+**Weekly project contribution log:**
+
+
+**9-22-2025** 
+
+* [x] Accept this project on Github and start thinking about the topic
+
+
+**10-1-2025** 
+
+* [x] Determine the topic and start looking for potential teammates
+
+
+**10-07-2025** 
+
+* [x] Failed to find teammates and began to build the project framework
+
+
+**10-20-2025**
+
+* [x] Start collecting data
+
+
+**11-07-2025**
+
+* [x] Some data cannot be obtained for free, so the topic has been modified.
+* [x] Collect all the necessary data for the new topic
+* [x] Establish the steps for data cleaning
+
+
+**11-10-2025**
+
+* [x] Complete the data cleaning and design the structure of EDA
+
+
+**11-13-2025**
+
+* [x] Complete writing EDA code and start on Unsupervised Learning Code
+
+
+**11-20-2025** 
+
+* [x] Complete writing Unsupervised Learning Code and start on write-up
+* [x] Restructure/Format all technical details page
+* [x] Complete all code and write-ups, begin working on non-technical report
+
+
+**11-24-2025**
+
+* [x] Complete all the code sections and start writing the textual parts for each section.
+
+
+**11-27-2025**
+
+* [x] Initial completion. Check for errors.
+  
+**12-01-2025**
+
+* [x] finish the report
+
+**12-04-2025**
+
+* [x] finish all and submit

@@ -1,0 +1,59 @@
+# Introduction and Motivation
+
+## Overview
+
+Properly cleaning the raw data is a key step before analysis and modeling. The collected data includes multiple information, such as different seasons, match types, goals, assists, and defensive stats. This data cleaning process includes handling missing and outliers, standardizing season formats, calculating derived metrics (such as goals per 90 minutes and goal contributions), and normalizing statistics across different measurement standards. This process is iterative; as the analysis progresses, further adjustments may be needed.
+
+
+## Explanation of Some New Variables and Standards
+
+### Season
+The season columns are marked as "start_year/end_year"(like 2015/2016).
+
+### Rank Levels
+The four ranking indicators (rank_in_league_top_attackers,rank_in_league_top_midfielders,rank_in_league_top_defenders,rank_in_club_top_scorer) are classified into Levels ranging from 0 to 5 based on percentile ranks.
+
+### Penalty Feature
+The columns "penalty_goals" and "penalty_misses" are combined into a boolean feature (true/false) named "has_penalty"
+
+
+## Data Type Corrections and Formatting
+
+### Handling Methods
+
+#### 1. Special Character Replacement
+some symbols such as `"—"` or empty value are replaced with `NaN`, which can ensure consistency in missing value handling across the dataset.
+
+#### 2. Numeric Columns
+Non-numeric value which appeared in numeric columns will be transformed to `NaN`.
+
+#### 3. Categorical Columns
+Missing values in categorical columns will be keep as `NaN`.  
+
+
+#### 4. Decision on Missing Rows and Columns
+Columns with lots of missing values will be dropped if they are useless.  
+
+
+## Normalization and Scaling
+
+### Rank Levels Standardization
+- The four ranking indicators (rank_in_league_top_attackers,rank_in_league_top_midfielders,rank_in_league_top_defenders,rank_in_club_top_scorer) are classified into Levels ranging from 0 to 5 based on percentile ranks.
+ 
+- Level classification rules:  
+  - **Level 5**: Best performers, top 5% of players.  
+  - **Level 4**: Above-average performers, top 5–20% of players.  
+  - **Level 3**: Average performers, 20–50% of players.  
+  - **Level 2**: Below-average performers, 50–80% of players.  
+  - **Level 1**: Worst performers, bottom 20% of players.  
+  - **Level 0**: Original value -1, indicating invalid or not applicable rankings (e.g., defenders without attacker rankings).  
+- **Purpose:**  
+  - Standardizes rankings across different dimensions and leagues for comparability.  
+  - Provides a consistent scale for machine learning models and multivariate analysis.  
+  - Preserves extreme performances while handling missing or inapplicable rankings as Level 0, minimizing noise.
+
+# Code
+
+
+
+

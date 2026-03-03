@@ -1,0 +1,79 @@
+# Introduction and Motivation
+
+EDA (Exploratory Data Analysis) is a method for conducting an initial analysis of data. It uses clear and intuitive charts to help analysts to understanding the distribution of data and the relationships between variables. EDA can build a basics for deeper modeling and analysis.
+
+In this part, i will use some advanced EDA techniques to analyze the cleaned data.
+
+# Data Analysis Methodology Overview
+
+## Data preparation
+- use six different files, 5 csv files and one json file
+- Handle missing values and outliers (completed in the last part)
+- Classify the variables as:
+   - Numerical variables: goals, assists, appearances, efficiency metrics
+   - Categorical variables: club, season, position
+   - Binary variables: whether have penalty 
+
+
+## Messi Style Automatic Analysis
+- Use OpenAI GPT-5-nano to generate a detailed summary of Messi’s playing style.
+- The output includes:
+  - A 200–250 word summary inclued skills, tactical evolution, core advantages, and influence.
+  - 15 keywords or short phrases can summarize Messi‘s playing style
+
+
+## Univariate Analysis
+- **Numeric Indicators**:
+  - Goals, assists, number of appearances, and efficiency per 90 minutes
+  - Total goals and total assists are not normally distributed (affected by high-scoring seasons)
+  - Efficiency indicators are closer to a normal distribution, suitable for statistical analysis
+- **Categorical Indicators**:
+  - Position: Right winger, center forward are the main types
+  - Penalties: Occurred in a few seasons, affecting goal performance
+  - Yellow cards/Red cards: Rare, indicating high discipline
+
+---
+
+## Bivariate and Multivariate Analysis
+- **Correlation Analysis**:
+  - The number of appearances and minutes played are highly positively correlated with goals/assists (0.88–0.99)
+  - The correlation between goals and assists is 0.83, indicating a comprehensive offensive contribution
+  - The correlation between penalties and total goals is 0.54, indicating an additional contribution
+  - Yellow cards are moderately positively correlated with goals/assists, while red cards have almost no correlation
+- **Efficiency Analysis**:
+  - The efficiency of goals and assists per game is high for all positions
+  - The forwards and right wingers have the highest efficiency, but all positions maintain stable contributions
+- **Visualization**:
+  - Bar charts show the number of club and individual honors
+  - Scatter plots, box plots, and heat maps show the distribution and relationships Multivariables
+  - Comparisons are made between goal performances in penalty and non-penalty matches
+
+
+## Statistical Tests
+- **Kolmogorov-Smirnov Test**: Confirm that the efficiency indicators are close to normal distribution
+- **t Test**: The number of goals and assists in the season with penalties is significantly higher than that without penalties
+- **ANOVA**: There is a significant difference in total goals specifically between the Argentina national team and FC Barcelona, while assists and per-90-minute efficiency remain relatively consistent across clubs.
+- **Pearson Correlation Matrix**:
+   - The number of appearances and total minutes have a significant impact on output
+   - The contribution of penalties is obvious, but not the only factor
+   - Red and yellow cards have almost no effect on offensive output
+
+---
+
+## Main Findings
+- Messi's total goals and assists are mainly driven by playing time.
+- Penalty increase the total goals, but they are not the decisive factor.
+- There are differences in total goals among various clubs or teams, but assists and efficiency are relatively stable.
+- High discipline, very few red and yellow cards, and outstanding long-term stability.
+- Maintains high output in multiple positions, with the central forward having the highest efficiency.
+
+
+## Conclusion and Next steps
+- Messi is a versatile attacking player, possessing both technical and tactical skills.
+
+- Next steps:
+  - Unsupervised learning 
+  - Supervised learning
+
+
+# Code
