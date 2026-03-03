@@ -1,3 +1,1 @@
-# Project repository 
-
-* Instructions: Open `_site/index.html` and read the "Getting started" and "Instructions" pages
+An Analysis of my hero –Leo Messi – DSAN-5000: Project
